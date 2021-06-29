@@ -11,10 +11,60 @@ public class AddressBookMain {
 		Scanner scanner = new Scanner(System.in);
 		int numOfContacts = scanner.nextInt();
 		Contacts contact [] = new Contacts[numOfContacts];
-		addContacts(scanner, numOfContacts,contact);
-		System.out.println("Enter a person email to edit the contact: ");
-		String phoneNumber = scanner.next();
-		editContact(scanner, contact, phoneNumber);
+
+		
+		while(true)
+		{
+			System.out.println("Chooose a option : 1) Add contacts 2) Edit contact 3)Delete a contact 4) exit ");
+			int number = scanner.nextInt();
+			switch(number)
+			{
+			case 1:
+				System.out.println("Add contacts: ");
+				addContacts(scanner, numOfContacts,contact);
+				break;
+			case 2:
+				System.out.println("Enter person phonenumber to edit the contact: ");
+				String phoneNumber = scanner.next();
+				editContact(scanner, contact, phoneNumber);
+				break;
+			case 3:
+				System.out.println("Enter person email to delete the contact : ");
+				String email =scanner.next();
+				deleteContact(contact, email);			
+				break;
+			case 4:
+				System.out.println("exit");
+				System.exit(0);
+			default:
+				System.out.println("Choose correct option");
+		}
+			
+	}
+}
+
+	private static void displayContacts(Contacts[] contact) {
+		for(int index=0;index<contact.length;index++)
+		{
+			System.out.println(contact[index]);
+		}
+	}
+
+	private static void deleteContact(Contacts[] contact, String email) {
+		for(int index=0;index<contact.length;index++)
+		{
+			if(contact[index].getEmail().equalsIgnoreCase(email))
+			{
+				//reduce size of array and move all elements on space ahead to remove 
+				int n = contact.length -2;
+				for(int i=index;i<n;i++)
+				{
+					contact[i] = contact[i+1];
+				}
+				
+			}
+		}
+		displayContacts(contact);
 	}
 
 	private static void editContact(Scanner scanner, Contacts[] contact, String phoneNumber) {
@@ -50,11 +100,8 @@ public class AddressBookMain {
 				phoneNumber = scanner.next();
 				contact[index].setPhoneNumber(phoneNumber);	
 			}
-			for(index=0;index<contact.length;index++)
-			{
-				System.out.println(contact[index]);
-			}
 		}
+		displayContacts(contact);
 	}
 
 	private static void addContacts(Scanner scanner, int numOfContacts,Contacts contact[]) {
@@ -79,10 +126,6 @@ public class AddressBookMain {
 			phoneNumber = scanner.next();
 			contact[index] = new Contacts(firstName,lastName,address,city,zip,phoneNumber,email);
 		}
-		//display contacts
-		for(int index =0;index<contact.length;index++)
-		{
-			System.out.println(contact[index]);
-		}
+		displayContacts(contact);
 	}
 }
