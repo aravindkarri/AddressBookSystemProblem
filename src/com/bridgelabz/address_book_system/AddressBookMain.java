@@ -1,10 +1,34 @@
 package com.bridgelabz.address_book_system;
 
+import java.util.Scanner;
+
 public class AddressBookMain {
 
 	public static void main(String[] args) {
 
 		System.out.println("Welcome to Address Book Program");
+		String firstName,lastName,address,city,email;
+		int zip,phoneNumber;
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter First name: ");
+		firstName = scanner.next();
+		System.out.println("Enter last name: ");
+		lastName = scanner.next();
+		System.out.println("Enter address : ");
+		address = scanner.next();
+		System.out.println("Enter city name: ");
+		city = scanner.next();
+		System.out.println("Enter email: ");
+		email = scanner.next();
+		System.out.println("Enter zip : ");
+		zip = scanner.nextInt();
+		System.out.println("Enter phone number: ");
+		phoneNumber = scanner.nextInt();
+
+		Contact contactObj = new Contact(firstName,lastName,address,city,zip,phoneNumber,email);
+
+
+
 	}
 	class Contact {
 		//instance variables
