@@ -56,7 +56,7 @@ public class AddressBookMain {
 			if(contact[index].getEmail().equalsIgnoreCase(email))
 			{
 				//reduce size of array and move all elements on space ahead to remove 
-				int n = contact.length -2;
+				int n = contact.length -1;
 				for(int i=index;i<n;i++)
 				{
 					contact[i] = contact[i+1];
